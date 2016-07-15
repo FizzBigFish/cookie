@@ -1,0 +1,99 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+        <title>JavaScript</title>
+		<script>
+		/*
+			document.cookie = "user=张志林";
+			document.cookie = "password = 123";
+			alert(document.cookie);
+			alert(document.cookie.length);
+			alert(typeof document.cookie);
+			
+			alert(document.cookie);
+			
+			//解决浏览器不识别中文的问题(将中文进行编码、将编码后的中文进行解码）
+			document.cookie = "user="+ encodeURIComponent("张志林");  //对中文进行编码
+			alert(decodeURIComponent(document.cookie)); //对编码后的中文进行解码
+			
+			//cookie值的完整格式
+			"key=value[;expires=date;path=url;domain=name;secure]"
+			var date = new Date();
+			date.setDate(date.getDate()+7);
+			//alert(date);
+			document.cookie = "url = 1000phone.com"+";expires="+date;
+			//"url=1000phone.com;expires=7"
+			*/
+			
+			setCookie("姓名","张志林",setCookieDate(7));
+			setCookie('url','Michael.1000phone.com',setCookieDate(7));
+			setCookie('email','zzl@1000phone.com',setCookieDate(7));
+			//alert(decodeURIComponent(document.cookie));
+			//创建cookie
+			function setCookie(name,value,expires,path,domain,secure){
+				var cookieText = encodeURIComponent(name)+'='+encodeURIComponent(value);
+				//instanceof:检测某个expires是否为Date类的对象
+				if (expires instanceof Date)
+				{
+					cookieText += ";expires=" + expires;
+				}
+				if (path)
+				{
+					cookieText += ";path=" + path;
+				}
+				if (domain)
+				{
+					cookieText+=";domain="+domain;
+				}
+				if (secure)
+				{
+					cookieText += ";secure";
+				}
+				document.cookie = cookieText;
+			}
+			alert(getCookie("姓名"));
+			alert(getCookie('url'));
+			alert(getCookie('email'));
+			//获取cookie
+			function getCookie(name){
+				var cookieName = encodeURIComponent(name)+'=';
+				var cookieStart = document.cookie.indexOf(cookieName);
+				var cookieValue = null;
+				if (cookieStart>=0)
+				{
+					var cookieEnd = document.cookie.indexOf(";",cookieStart);
+					if (cookieEnd == -1)
+					{
+						cookieEnd = document.cookie.length;
+					}
+					cookieValue = decodeURIComponent(document.cookie.substring(cookieStart+cookieName.length,cookieEnd));
+				}
+				return cookieValue;
+
+			}
+			removeCookie("url");
+			//删除cookie
+			function removeCookie(name){
+				document.cookie = name+'=;expires='+new Date(0);
+			}
+
+			//封装有效期
+			function setCookieDate(day){
+				var date = null;
+				//确定传入的是一个正整数
+				if (typeof day == "number"&&day>0)
+				{
+					date = new Date();
+					date.setDate(date.getDate()+day);
+				}else{
+					console.log("您传入一个非法数字！");
+				}
+				return date;
+			}
+		</script>
+    </head>
+    <body>
+    
+    </body>
+</html>

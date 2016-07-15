@@ -1,0 +1,31 @@
+张志林
+山西忻（xin)州
+Tel：17710879717
+QQ:278852026
+
+  "姓名=张志林; url=Michael.1000phone.com; email=zzl@1000phone.com"
+
+name
+
+start
+查找 name  indexOf
+
+如果用户传入一个cookie中没有的key   返回-1
+
+end  indexof ;
+最后一个没有分号   返回-1      整个cookie的长度
+
+
+
+
+截取 substring(start,end)
+
+
+第一步：将传入的参数进行编码
+第二步：找到开始位置
+第三步：找到结束位置
+第四步：截取出所需字符串
+第五步：返回value值
+
+
+     
